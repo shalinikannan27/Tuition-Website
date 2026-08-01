@@ -1,0 +1,7 @@
+# robots.txt — Shankar's Tuition Academy
+# https://shankartuitionacademy.in
+
+User-agent: *
+Allow: /
+
+Sitemap: https://shankartuitionacademy.in/sitemap.xml

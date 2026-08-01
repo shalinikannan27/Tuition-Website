@@ -9,6 +9,29 @@
   var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
   var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
+  var menuToggle = document.getElementById("menu-toggle");
+  var mainNav = document.getElementById("main-nav");
+
+  /* ========================================
+     Mobile hamburger toggle
+     ======================================== */
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener("click", function () {
+      var isOpen = mainNav.classList.toggle("open");
+      menuToggle.classList.toggle("active");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Close menu when a nav link is tapped
+    mainNav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        mainNav.classList.remove("open");
+        menuToggle.classList.remove("active");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
   var prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;

@@ -797,39 +797,141 @@ footer {
 /* ==========================================================
    RESPONSIVE
    ========================================================== */
+/* ---------- Hamburger Button (hidden on desktop) ---------- */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1001;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger-line {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--primary);
+  border-radius: 3px;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+}
+
+.hamburger.active .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- 1024px ---------- */
 @media (max-width: 1024px) {
   .contact-layout { grid-template-columns: 1fr; }
   .contact-blocks { grid-template-columns: 1fr 1fr; }
+  .offer-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* ---------- 768px ---------- */
 @media (max-width: 768px) {
-  .header-inner { flex-direction: column; gap: 14px; }
+  /* — Header & Nav — */
+  .header-inner { flex-wrap: wrap; justify-content: space-between; }
+  .hamburger { display: flex; }
 
-  nav { flex-wrap: wrap; justify-content: center; gap: 12px; }
+  #main-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border);
+    margin-top: 14px;
+    border-radius: 0 0 var(--r-md) var(--r-md);
+    overflow: hidden;
+  }
 
-  .nav-cta { display: none; }
+  #main-nav.open { display: flex; }
 
-  .hero { padding: 140px 5% 80px; min-height: auto; }
-  .hero h2 { font-size: 36px; letter-spacing: -1px; }
-  .hero p { font-size: 17px; }
+  #main-nav a {
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    font-size: 16px;
+  }
+  #main-nav a:last-child { border-bottom: none; }
 
-  section { padding: 80px 5%; }
-  h3 { font-size: 30px; margin-bottom: 48px; }
+  .nav-cta {
+    display: block !important;
+    margin: 10px 16px 14px;
+    text-align: center;
+    border-radius: 50px;
+  }
 
-  .about-card { padding: 32px 24px; }
+  /* — Hero — */
+  .hero { padding: 120px 5% 60px; min-height: auto; }
+  .hero h2 { font-size: 32px; letter-spacing: -1px; }
+  .hero p { font-size: 16px; margin-bottom: 28px; }
 
+  .eyebrow-badge { font-size: 11px; padding: 7px 16px; margin-bottom: 20px; }
+
+  .btn { padding: 14px 28px; font-size: 15px; }
+
+  /* — Sections — */
+  section { padding: 64px 5%; }
+  h3 { font-size: 26px; margin-bottom: 40px; }
+
+  /* — About — */
+  .about-card { padding: 28px 20px; }
+  .about-card p { font-size: 16px; }
+  .qual-list { gap: 8px; }
+  .qual-list li { font-size: 13px; padding: 8px 16px; }
+
+  /* — Card Grids — */
   .card-grid { grid-template-columns: 1fr; }
+  .offer-grid { grid-template-columns: 1fr !important; max-width: 100%; }
 
-  .contact-blocks { grid-template-columns: 1fr; }
-
-  .whatsapp-card { padding: 36px 24px; }
-
-  .fab-whatsapp { bottom: 20px; right: 20px; width: 52px; height: 52px; }
-  .fab-tooltip { display: none; }
-
+  /* — Timings — */
   .timings-grid { grid-template-columns: 1fr; }
 
+  /* — Testimonials — */
   .testimonials-grid { grid-template-columns: 1fr; }
+  .tcard { padding: 24px 20px; }
+
+  /* — Contact — */
+  .contact-layout { grid-template-columns: 1fr; }
+  .contact-blocks { grid-template-columns: 1fr; }
+  .cb-value { font-size: 14px; word-break: break-word; overflow-wrap: break-word; }
+  .whatsapp-card { padding: 32px 20px; }
+  .whatsapp-card h4 { font-size: 20px; }
+
+  /* — Footer — */
+  .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px 20px; }
+  .footer-brand { font-size: 20px; }
+
+  /* — FAB — */
+  .fab-whatsapp { bottom: 18px; right: 18px; width: 50px; height: 50px; }
+  .fab-tooltip { display: none; }
+}
+
+/* ---------- 480px (small phones) ---------- */
+@media (max-width: 480px) {
+  .hero h2 { font-size: 28px; }
+  .hero p { font-size: 15px; }
+  .brand { font-size: 18px; }
+  h3 { font-size: 24px; margin-bottom: 36px; }
+  .about-card { padding: 24px 16px; }
+  .card { padding: 32px 20px 28px; }
+  .contact-block { padding: 18px 14px; gap: 12px; }
+  .cb-icon { width: 40px; height: 40px; }
+  .cb-icon .material-symbols-outlined { font-size: 20px; }
+  .timing-slot { padding: 12px 18px; }
+  .section-desc { font-size: 14px; }
+  .eyebrow-badge { font-size: 10.5px; padding: 6px 14px; letter-spacing: .3px; }
+  .btn { padding: 13px 24px; font-size: 14px; width: 100%; justify-content: center; }
 }
 
 
@@ -1143,22 +1245,4 @@ footer {
   100% { left: 130%; }
 }
 
-/* ==========================================================
-   RESPONSIVE — NEW SECTIONS
-   ========================================================== */
-@media (max-width: 1024px) {
-  .testimonials-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .testimonials-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-desc {
-    margin: -16px auto 36px;
-  }
-}
 
